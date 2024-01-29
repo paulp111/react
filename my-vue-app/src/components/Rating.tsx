@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { StarBorder, Star } from "@mui/icons-material";
 
 type Movie = {
@@ -14,18 +15,33 @@ interface Props {
 }
 
 export default function Rating({item, onRating}: Props) {
+    const [hoverRating, setHoverRating] = useState(0);
+
+    const handleMouseOver = (newRating: number) => {
+        setHoverRating(newRating);
+    };
+
+    const handleMouseLeave = () => {
+        setHoverRating(0);
+    };
+
     const ratings: JSX.Element[] = [];
     for (let i = 0; i < 5; i++) {
-        ratings.push (
+        ratings.push(
             <div
-            style={{ display: "inline-block" }}
-            key={i}
-            className="rating-btn"
-            onClick={() => onRating(item.id, i + 1)}
+                style={{ display: "inline-block" }}
+                key={i}
+                className="rating-btn"
+                onMouseOver={() => handleMouseOver(i + 1)}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => onRating(item.id, i + 1)}
             >
-                {item.rating > i ? <Star /> : <StarBorder />}
+                {(hoverRating || item.rating) > i ? <Star /> : <StarBorder />}
             </div>
         );
     }
-    return ratings;
+
+    return (
+        <div>{ratings}</div>
+    );
 }
