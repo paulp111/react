@@ -29,10 +29,16 @@ const initMovies = [
 export default function MovieList() {
   const [movies, setMovies] = useState(initMovies);
 
+  const handleRating = (id: number, newRating: number): void => {
+    setMovies(prevMovies => prevMovies.map(movie => 
+      movie.id === id ? { ...movie, rating: newRating } : movie
+    ));
+  };
+
   return (
     <div className="container">
-      {movies.map((movie) => (
-        <MovieListItem key={movie.id} movie={movie} />
+      {movies.map(movie => (
+        <MovieListItem key={movie.id} movie={movie} onRating={handleRating} />
       ))}
     </div>
   );
