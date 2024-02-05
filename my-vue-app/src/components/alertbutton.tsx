@@ -1,13 +1,13 @@
 interface AlertButtonProps {
-    text: string;
-  }
-  
-  const AlertButton = ({ text }: AlertButtonProps) => {
-    const handleClick = () => {
-      alert('Button geklickt');
-    };
-  
-    return <button onClick={handleClick}>{text}</button>;
+  text: string;
+}
+
+const AlertButton = ({ text }: AlertButtonProps) => {
+  const handleClick = () => {
+    alert("Button geklickt");
   };
-  
-  export default AlertButton;
+
+  return <button onClick={handleClick}>{text}</button>;
+};
+
+export default AlertButton;

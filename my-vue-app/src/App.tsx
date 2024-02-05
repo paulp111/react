@@ -1,4 +1,4 @@
-import MovieList from "./components/MovieList";
+import MovieList from "./components/MovieList.container"
 import AlertButton from "./components/alertbutton";
 
 
